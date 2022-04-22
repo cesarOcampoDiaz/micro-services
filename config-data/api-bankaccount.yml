@@ -15,7 +15,7 @@ info:
   hello: Hi here!
 spring:
   application:
-    name: api-bankaccount
+    name: api-bankaccounts
   data:
     mongodb:
       database: dbBankAccount
