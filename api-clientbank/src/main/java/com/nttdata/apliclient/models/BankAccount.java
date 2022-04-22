@@ -12,7 +12,7 @@ import lombok.Setter;
 public class BankAccount {
 	
 	private String accountNumber;
-	private String typeClient;
+	private Integer typeClient;
 	private String codeClient;
 	private TypeAccount typeAccount;
 	private Currency currency;

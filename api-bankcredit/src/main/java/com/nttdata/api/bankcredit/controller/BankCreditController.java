@@ -40,18 +40,24 @@ public class BankCreditController {
 
 	@GetMapping
 	public Mono<ResponseEntity<Flux<BankCredit>>> findAll() {
+		LOGGER.info("metodo findAll: Retorna los creditos bancarios");
+		
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(bankCreditService.findAll()));
 	}
 
 
 	@GetMapping("credit/{codeClient}")
 	public Mono<ResponseEntity<Flux<BankCredit>>> findByCodeClient(@PathVariable String codeClient) {
+		LOGGER.info("metodo findByCodeClient: Busca por el codigo del cliente");
+		
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(bankCreditService.findByCodeClient(codeClient)));
 	}
 
 	
 	@GetMapping("/{id}")
 	public Mono<ResponseEntity<BankCredit>> findById(@PathVariable String id) {
+		LOGGER.info("metodo findById: Busca un credito bancario por su ID");
+		
 		return bankCreditService.findById(id).map(bc -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(bc))
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
@@ -63,6 +69,8 @@ public class BankCreditController {
 		return monoBankCredit.flatMap(bankCredit -> {
 			bankCredit.setRequestDate(new Date());
 			return bankCreditService.save(bankCredit).map(bc -> {
+				LOGGER.info("metodo addBankCredit: Agrega un credito bancario");
+				
 				response.put("BankCredit", bc);
 				response.put("message", "Successfully saved.");
 				response.put("timestamp", new Date());
@@ -81,11 +89,13 @@ public class BankCreditController {
 
 						return Mono.just(ResponseEntity.badRequest().body(response));
 					});
-		});
+		}).doOnError(e -> LOGGER.warn("metodo addBankCredit: Hubo errores al agregar un credito bancario"));
 	}
 
 	@PutMapping("/{id}")
 	public Mono<ResponseEntity<BankCredit>> editBankCredit(@RequestBody BankCredit bankCredit, @PathVariable String id) {
+		LOGGER.info("metodo editBankCredit: Edita un credito bancario");
+		
 		return bankCreditService.findById(id).flatMap(bc -> {
 			bc.setAmount(bankCredit.getAmount());
 			bc.setFee(bankCredit.getFee());
@@ -96,6 +106,8 @@ public class BankCreditController {
 
 	@DeleteMapping("/{id}")
 	public Mono<ResponseEntity<Void>> deleteBankCredit(@PathVariable String id) {
+		LOGGER.info("metodo deleteBankCredit: Elimina un credito bancario");
+		
 		return bankCreditService.findById(id).flatMap(bc -> {
 			return bankCreditService.delete(bc).then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
 

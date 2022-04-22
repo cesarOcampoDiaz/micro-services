@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.nttdata.apliclient.models.BankAccount;
 import com.nttdata.apliclient.models.Response;
 import com.nttdata.apliclient.service.IBankAccountService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -24,11 +26,19 @@ public class BankAccountController {
 	private IBankAccountService service;
 	
 	private static final Logger LOGGER = LogManager.getLogger(BankAccountController.class);
+	
+	@GetMapping("/client")
+	public Mono<ResponseEntity<Flux<BankAccount>>> findAllClient(){
+		LOGGER.info("metodo findAllClient: metodo de comunicacion al microservicio api-bankaccount");
+		
+		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+				.body(service.findAll()))
+				.defaultIfEmpty(ResponseEntity.notFound().build());
+	}
 
 	@PostMapping("/client")
 	public Mono<ResponseEntity<Mono<Response>>> saveBankAccountClient(@RequestBody BankAccount bankAccount) {
-		
-		LOGGER.info("metodo saveBankAccountClient: metodo de comunicacion al servicio name api-bankaccount");
+		LOGGER.info("metodo saveBankAccountClient: metodo de comunicacion al microservicio api-bankaccount");
 		
 		return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
 				.body(service.saveBankAccount(bankAccount)))

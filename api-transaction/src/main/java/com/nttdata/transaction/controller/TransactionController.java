@@ -55,12 +55,14 @@ public class TransactionController {
 		LOGGER.info("metodo listarTransactionCliente cliente "+codeClient);
 		return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
 				service.findByCodeClientAndTypeTransactionId(codeClient,codeTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
-		     }
+	}
 
 	
 	//busca por el codigo en el caso que el objeto es nullo nos retorna por defecto la despuesta not data found
 	@GetMapping("/{id}")
 	public Mono<ResponseEntity<Transaction>> findById(@PathVariable String id) {
+		LOGGER.info("metodo findById: Retorna una transaccion por su ID"+id);
+		
 		return service.findById(id).map(t -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(t))
 				.defaultIfEmpty(ResponseEntity.notFound().build());
 	}
@@ -77,6 +79,8 @@ public class TransactionController {
 		return monoTransaction.flatMap(transaction -> {
 			transaction.setDateTransaction(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
 			return service.save(transaction).map(t -> {
+				LOGGER.info("metodo save: Agrega una transaccion");
+				
 				respuesta.put("obj", t);
 				respuesta.put("message", "Transacion guardada con exito");
 				respuesta.put("timestamp", new Date());
@@ -96,11 +100,13 @@ public class TransactionController {
 
 						return Mono.just(ResponseEntity.badRequest().body(respuesta));
 					});
-		});
+		}).doOnError(e -> LOGGER.warn("metodo save: Hubo errores al agregar una transaccion"));
 	}
 
 	@PutMapping("/{id}")
 	public Mono<ResponseEntity<Transaction>> update(@RequestBody Transaction transaction, @PathVariable String id) {
+		LOGGER.info("metodo update: Edita una transaccion");
+		
 		return service.findById(id).flatMap(c -> {
 			c.setAmount(transaction.getAmount());
 			return service.save(c);
@@ -110,6 +116,8 @@ public class TransactionController {
 
 	@DeleteMapping("/{id}")
 	public Mono<ResponseEntity<Void>> delete(@PathVariable String id) {
+		LOGGER.info("metodo delete: Elimina una transaccion");
+		
 		return service.findById(id).flatMap(c -> {
 			return service.delete(c).then(Mono.just(new ResponseEntity<Void>(HttpStatus.NO_CONTENT)));
 

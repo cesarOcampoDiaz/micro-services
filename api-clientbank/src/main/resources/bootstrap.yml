@@ -1,9 +1,9 @@
-server.port=8081
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=dbClientBank
-spring.application.name=clientbank-service
-##METRICAS
-management.endpoints.web.exposure.include=*
-management.endpoint.shutdown.enabled=true
+spring:
+  application:
+    name: api-clientbank
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8001
+
 

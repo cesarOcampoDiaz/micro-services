@@ -1,13 +1,12 @@
-package com.nttdata.apibankcredit;
+package com.nnttada.config;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiBankcreditApplicationTests {
+class ConfigServerApplicationTests {
 
-	@Ignore
+	@Test
 	void contextLoads() {
 	}
 
