@@ -1,0 +1,28 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+info:
+  app:
+    name: Spring Boot Actuator Api Credit Account
+    web: *
+  hello: Hi here!
+spring:
+  application:
+    name: api-creditaccount
+  data:
+    mongodb:
+      database: dbCreditAccount
+      port: 27017
+      host: localhost
+server:
+  port: 8084
+logging:
+  level:
+    root: info

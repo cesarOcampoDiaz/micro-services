@@ -1,0 +1,18 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    shutdown:
+      enabled: true
+spring:
+  application:
+    name: clientbank-service
+  data:
+    mongodb:
+      database: dbClientBank
+      port: 27017
+      host: localhost
+server:
+  port: 8081
