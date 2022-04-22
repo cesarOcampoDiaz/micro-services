@@ -8,7 +8,7 @@ management:
       enabled: true
 spring:
   application:
-    name: api-bankaccounts
+    name: api-bankaccount
   data:
     mongodb:
       database: dbBankAccount
