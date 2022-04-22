@@ -4,14 +4,8 @@ management:
       exposure:
         include: *
   endpoint:
-    health:
-      show-details: always
     shutdown:
       enabled: true
-info:
-  app:
-    name: Spring Boot Actuator Api Transaction
-  hello: Hi here!
 spring:
   application:
     name: api-transaction
@@ -22,6 +16,3 @@ spring:
       host: localhost
 server:
   port: 8085
-logging:
-  level:
-    root: info

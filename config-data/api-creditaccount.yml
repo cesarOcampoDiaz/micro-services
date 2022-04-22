@@ -4,15 +4,8 @@ management:
       exposure:
         include: *
   endpoint:
-    health:
-      show-details: always
     shutdown:
       enabled: true
-info:
-  app:
-    name: Spring Boot Actuator Api Credit Account
-    web: *
-  hello: Hi here!
 spring:
   application:
     name: api-creditaccount
@@ -23,6 +16,3 @@ spring:
       host: localhost
 server:
   port: 8084
-logging:
-  level:
-    root: info

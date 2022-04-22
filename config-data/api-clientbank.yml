@@ -8,7 +8,7 @@ management:
       enabled: true
 spring:
   application:
-    name: clientbank-service
+    name: api-clientbank
   data:
     mongodb:
       database: dbClientBank
