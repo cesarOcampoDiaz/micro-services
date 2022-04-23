@@ -15,4 +15,5 @@ spring:
       port: 27017
       host: localhost
 server:
-  port: 8001
+  port: 8081
+  
