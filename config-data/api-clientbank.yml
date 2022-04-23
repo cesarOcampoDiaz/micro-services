@@ -1,19 +1,27 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      database: dbBankAccount
+      port: 27017
+      host: localhost
 management:
   endpoints:
     web:
       exposure:
         include: *
   endpoint:
+    health:
+      show-details: always
     shutdown:
       enabled: true
-spring:
-  application:
-    name: api-clientbank
-  data:
-    mongodb:
-      database: dbClientBank
-      port: 27017
-      host: localhost
-server:
-  port: 8081
+info:
+  app:
+    name: Spring Boot Actuator Api Bank Account
+    web: *
+  hello: Hi here!
+logging:
+  level:
+    root: info
   
