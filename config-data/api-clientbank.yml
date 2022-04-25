@@ -20,8 +20,3 @@ management:
 logging:
   level:
     root: info
-info:
-  app:
-    name: Spring Boot Actuator Api Bank Account
-    web: *
-  hello: Hi here!
