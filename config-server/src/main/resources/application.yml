@@ -1,0 +1,16 @@
+server:
+  port: 8001
+spring:
+  security:
+    user:
+      name: nttdata
+      password: nttd4t4
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cesarOcampoDiaz/micro-services
+          username: cesarOcampoDiaz
+          password: z91fYS.12
+          search-paths: config-data
+          default-label: config-server

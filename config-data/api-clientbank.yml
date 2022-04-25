@@ -1,2 +1,16 @@
 server:
   port: 8081
+spring:
+  data:
+    mongodb:
+      database: dbClientBank
+      port: 27017
+      host: localhost
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+  endpoint:
+    shutdown:
+      enabled: true
