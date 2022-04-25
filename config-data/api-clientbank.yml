@@ -6,14 +6,3 @@ spring:
       database: dbClientBank
       port: 27017
       host: localhost
-management:
-  endpoint:
-    shutdown:
-      enabled: true
-    health:
-      show:
-        details: always
-  endpoints:
-    web:
-      exposure:
-        include: *
