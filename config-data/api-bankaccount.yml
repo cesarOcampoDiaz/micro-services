@@ -1,20 +1,26 @@
-management:
-  endpoints:
-    web:
-      exposure:
-        include: *
-  endpoint:
-    shutdown:
-      enabled: true
+server:
+  port: 8082
 spring:
-  application:
-    name: api-bankaccount
   data:
     mongodb:
       database: dbBankAccount
       port: 27017
       host: localhost
-server:
-  port: 8082
-
-  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: 'true'
+info:
+  app:
+    name: Spring Boot Actuator Api Bank Credit
+    web: '*'
+  hello: Hi here!
+logging:
+  level:
+    root: info
