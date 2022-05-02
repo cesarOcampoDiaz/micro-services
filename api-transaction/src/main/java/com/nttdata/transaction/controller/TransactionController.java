@@ -54,7 +54,7 @@ public class TransactionController {
 	public Mono<ResponseEntity<Flux<Transaction>>>  listTransactionClient(@PathVariable("codeClient") String codeClient,@PathVariable("codeTransaction") Integer codeTransaction) {
 		LOGGER.info("metodo listarTransactionCliente cliente "+codeClient);
 		return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
-				service.findByCodeClientAndTypeTransactionId(codeClient,codeTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
+				service.findByCodeClientAndIdTypeAccount(codeClient,codeTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
 		     }
 
 	

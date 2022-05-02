@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Transaction {
 	@Id
 	private String id;
-    private TypeTransaction typeTransaction;
+    private Integer idTypeAccount;
     private String numberCard;
     private Integer typeCard;
     private String codeClient;

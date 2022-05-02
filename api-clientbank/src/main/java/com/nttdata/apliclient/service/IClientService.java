@@ -1,6 +1,7 @@
 package com.nttdata.apliclient.service;
 
 import com.nttdata.apliclient.document.Client;
+import com.nttdata.apliclient.models.ClientProducts;
 import com.nttdata.apliclient.models.Transaction;
 
 import reactor.core.publisher.Flux;
@@ -26,7 +27,8 @@ public interface IClientService {
 	public Mono<Client> save(Client client);
 	
 	public Mono<Void> delete(Client client);
-	
+
+	public Mono<ClientProducts> findByCodeClientProducts(String codeClient);
 	
 
 }

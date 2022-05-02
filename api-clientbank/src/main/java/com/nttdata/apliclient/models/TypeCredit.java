@@ -1,4 +1,4 @@
-package com.nttdata.api.bankcredit.document;
+package com.nttdata.apliclient.models;
 
 import lombok.Getter;
 import lombok.Setter;

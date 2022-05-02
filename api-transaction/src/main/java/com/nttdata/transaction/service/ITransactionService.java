@@ -15,7 +15,7 @@ public interface ITransactionService {
 	
 	public  Mono<Void> delete(Transaction transaction);
 	
-	public Flux<Transaction> findByCodeClientAndTypeTransactionId(String codeClient,Integer id);
+	public Flux<Transaction> findByCodeClientAndIdTypeAccount(String codeClient,Integer idTypeAccount);
 	
 
 }

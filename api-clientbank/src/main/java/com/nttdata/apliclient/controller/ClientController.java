@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.validation.Valid;
+
+import com.nttdata.apliclient.models.ClientProducts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +36,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 @RestController
 @RequestMapping("/client")
+@Qualifier
 public class ClientController {
 	
 	@Autowired
 	private IClientService service;
 	
 	@Autowired
-	ITransactionService serviceTransaction;
+	private ITransactionService serviceTransaction;
 	
 	
 	private static final Logger LOGGER = LogManager.getLogger(ClientController.class);
@@ -174,6 +178,16 @@ public class ClientController {
 				serviceTransaction.save(monoTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
 
 	}
-    
-	 
+
+
+    @GetMapping("/report/{codeClient}")
+    public Mono<ResponseEntity<Mono<ClientProducts>>>  listTransactionClient(@PathVariable("codeClient") String codeClient) {
+        LOGGER.info("metodo listTransactionClient: metodo de comunicacion al servicio name api-transaction");
+
+        return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
+                service.findByCodeClientProducts(codeClient))).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+
+
 }

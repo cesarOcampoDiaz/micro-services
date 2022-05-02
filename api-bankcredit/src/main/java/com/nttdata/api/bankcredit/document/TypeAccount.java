@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TypeCredit {
+public class TypeAccount {
 	
 	private Integer id;
 	private String description;

@@ -41,5 +41,7 @@ public class CreditAccountServiceImpl implements ICreditAccountService {
 		// TODO Auto-generated method stub
 		return creditAccountDAO.findByCodeClient(codeClient);
 	}
+
+
 	
 }

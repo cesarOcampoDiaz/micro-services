@@ -42,9 +42,10 @@ public class TransactionServiceImpl implements ITransactionService {
     
 	// se filtra solo las transacciones por tipo (prestamos,tarjetas de cretidos, cuentas)
 	@Override
-	public Flux<Transaction> findByCodeClientAndTypeTransactionId(String codeClient,Integer id) {
+
+	public Flux<Transaction> findByCodeClientAndIdTypeAccount(String codeClient,Integer idTypeAccount){
 		// TODO Auto-generated method stub
-		return transactionDao.findByCodeClientAndTypeTransactionId(codeClient,id);
+		return transactionDao.findByCodeClientAndIdTypeAccount(codeClient,idTypeAccount);
 
 				
 	}

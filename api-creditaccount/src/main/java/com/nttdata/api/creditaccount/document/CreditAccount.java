@@ -17,7 +17,7 @@ public class CreditAccount {
 	@Id
 	private String accountNumber;
 	private String codeClient;
-	private TypeCredit typeCredit;
+	private TypeAccount typeAccount;
 	private Currency currency;
 	@Nullable
 	private Date membershipDate;

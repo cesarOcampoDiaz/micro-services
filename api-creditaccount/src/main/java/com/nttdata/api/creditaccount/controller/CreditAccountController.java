@@ -44,7 +44,7 @@ public class CreditAccountController {
 	}
 	
 	
-	@GetMapping("credit/{codeClient}")
+	@GetMapping("client/{codeClient}")
 	public Mono<ResponseEntity<Flux<CreditAccount>>> findByCodeClien(@PathVariable String codeClient) {
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(creditAccountService.findByCodeClient(codeClient)));
 	}

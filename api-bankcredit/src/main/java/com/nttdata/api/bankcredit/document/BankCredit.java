@@ -20,7 +20,7 @@ public class BankCredit {
 	private String id;
 	private String codeClient;
 	private Currency currency;
-	private TypeCredit typeCredit;
+	private TypeAccount typeAccount;
 	@Nullable
 	private Date requestDate;
 	@JsonFormat(pattern = "dd/MM/yyyy")

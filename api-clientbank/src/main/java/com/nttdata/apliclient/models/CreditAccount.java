@@ -1,17 +1,16 @@
-package com.nttdata.api.creditaccount.document;
+package com.nttdata.apliclient.models;
 
-import java.util.Date;
-
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
 @Getter
 @Setter
-@Document(collection = "creditaccount")
+
 public class CreditAccount {
 	
 	@Id

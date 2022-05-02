@@ -61,5 +61,11 @@ public class BankAccountServiceImpl implements IBankAccountService {
 		// TODO Auto-generated method stub
 		return bankAccountDAO.findByCodeClientAndTypeClientAndTypeAccountId(codeClient, typeClient, typeAccountId);
 	}
-	
+
+	@Override
+	public Flux<BankAccount> findByCodeClient(String codeClient) {
+		return bankAccountDAO.findByCodeClient(codeClient);
+	}
+
+
 }
