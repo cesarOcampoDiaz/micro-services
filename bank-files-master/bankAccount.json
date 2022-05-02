@@ -1,0 +1,228 @@
+//SE CARGA UNO POR UNO POST http://localhost:8082/bankaccount
+
+{
+    "accountNumber": "197-2658546-70",
+    "typeClient": 1,
+    "codeClient": "45896524",
+    "typeAccount": {
+        "id": 1,
+        "description": "AHORRO"
+    },
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    },
+    "membershipDate": "2022-04-20T18:16:48.715+00:00",
+    "balance": 0.0,
+    "card": {
+        "cardNumber": "1282112140502920",
+        "expiryDate": "15/05/2025",
+        "typeCard": {
+            "id": 1,
+            "description": "VISA DEBITO CLASICA"
+        }
+    }
+}
+
+
+{
+    "accountNumber": "197-2658546-71",
+    "typeClient": 1,
+    "codeClient": "45896524",
+    "typeAccount": {
+        "id": 3,
+        "description": "FIJO"
+    },
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    },
+    "membershipDate": "2022-04-20T18:16:48.715+00:00",
+    "balance": 0.0,
+    "card": {
+        "cardNumber": "1282112140502920",
+        "expiryDate": "15/05/2025",
+        "typeCard": {
+            "id": 1,
+            "description": "VISA DEBITO CLASICA"
+        }
+    }
+}
+
+
+{
+    "accountNumber": "197-2658546-72",
+    "typeClient": 1,
+    "codeClient": "45896524",
+    "typeAccount": {
+        "id": 2,
+        "description": "CORRIENTE"
+    },
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    },
+    "membershipDate": "2022-04-20T18:16:48.715+00:00",
+    "balance": 0.0,
+    "card": {
+        "cardNumber": "1282112140502920",
+        "expiryDate": "15/05/2025",
+        "typeCard": {
+            "id": 1,
+            "description": "VISA DEBITO CLASICA"
+        }
+    }
+}
+
+
+
+
+    {
+        "accountNumber": "197-2658546-04",
+        "typeClient": 1,
+        "codeClient": "43462534",
+        "typeAccount": {
+            "id": 1,
+            "description": "AHORRO"
+        },
+        "currency": {
+            "id": 1,
+            "description": "SOL"
+        },
+        "membershipDate": "2022-04-20T18:16:48.715+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "1282112128282920",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 1,
+                "description": "VISA DEBITO CLASICA"
+            }
+        }
+    }
+
+    {
+        "accountNumber": "197-2658546-03",
+        "typeClient": 1,
+        "codeClient": "43462534",
+        "typeAccount": {
+            "id": 3,
+            "description": "FIJO"
+        },
+        "currency": {
+            "id": 2,
+            "description": "USD"
+        },
+        "membershipDate": "2022-04-20T18:17:43.369+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "1282112128282922",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 3,
+                "description": "VISA DEBITO ORO"
+            }
+        }
+    }
+
+
+    {
+        "accountNumber": "197-2658546-13",
+        "typeClient": 2,
+        "codeClient": "1798285937001",
+        "typeAccount": {
+            "id": 2,
+            "description": "CORRIENTE"
+        },
+        "currency": {
+            "id": 1,
+            "description": "SOL"
+        },
+        "membershipDate": "2022-05-02T18:17:43.369+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "1282112128282912",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 3,
+                "description": "VISA DEBITO ORO"
+            }
+        }
+    }
+
+    --mo ingresa por la validacion
+
+    {
+        "accountNumber": "197-2658547-33",
+        "typeClient": 2,
+        "codeClient": "1798285937001",
+        "typeAccount": {
+            "id": 2,
+            "description": "CORRIENTE"
+        },
+        "currency": {
+            "id": 2,
+            "description": "USD"
+        },
+        "membershipDate": "2022-04-20T18:17:43.369+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "1282112128282000",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 3,
+                "description": "VISA DEBITO ORO"
+            }
+        }
+    }
+
+
+    {
+        "accountNumber": "197-2658547-38",
+        "typeClient": 2,
+        "codeClient": "1798285937001",
+        "typeAccount": {
+            "id": 2,
+            "description": "CORRIENTE"
+        },
+        "currency": {
+            "id": 2,
+            "description": "USD"
+        },
+        "membershipDate": "2022-04-20T18:17:43.369+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "1282112128282000",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 3,
+                "description": "VISA DEBITO ORO"
+            }
+        }
+    }
+
+    //no deberia ingresar
+
+    {
+        "accountNumber": "199-2658546-13",
+        "typeClient": 2,
+        "codeClient": "1798285937001",
+        "typeAccount": {
+            "id": 1,
+            "description": "AHORRO"
+        },
+        "currency": {
+            "id": 1,
+            "description": "SOL"
+        },
+        "membershipDate": "2022-04-20T18:17:43.369+00:00",
+        "balance": 0.0,
+        "card": {
+            "cardNumber": "3082112128282912",
+            "expiryDate": "15/05/2025",
+            "typeCard": {
+                "id": 3,
+                "description": "VISA DEBITO ORO"
+            }
+        }
+    }

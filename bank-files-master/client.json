@@ -1,0 +1,91 @@
+//SE CARGA UNO POR UNO  POST http://localhost:8081/api/client
+
+//Empresa
+
+
+    {
+        "direction": "Av huaylas cudra 12",
+        "phone": "51-95995955",
+        "email": "compa.uno@compa.com",
+        "codeClient": "1798285937001",
+        "corporation": "Empresa sac",
+        "typeClient": {
+            "id": 2,
+            "description": "EMPRESA"
+        },
+        "holders": [
+            {
+                "dni": "43462534",
+                "firstName": "CESAR EDUARDO",
+                "lastName": "OCAMPO DIAZ",
+                "direction": "AV. ALAMEDA SUR S/N NUMERO",
+                "phone": "944857062",
+                "email": "CESAR.OCAMPO@GMAIL.COM"
+            },
+            {
+                "dni": "27081147",
+                "firstName": "GISSELA",
+                "lastName": "DIAZ VERA",
+                "direction": "AV. ALAMEDA SUR S/N NUMERO",
+                "phone": "958456588",
+                "email": "GHISELA@GMAIL.COM"
+            }
+        ],
+        "signatory": [
+            {
+                "dni": "25496546",
+                "firstName": "ARIANA SAMANTA",
+                "lastName": "DIAZ CACHAY",
+                "direction": "AV. ALAMEDA SUR S/N NUMERO",
+                "phone": "958456577",
+                "email": "ASAMANTA@GMAIL.COM"
+            }
+        ]
+    }
+
+//clientes
+
+    {
+        "firstName": "WILBER",
+        "lastName": "HUAMANI CACHAY",
+        "direction": "AV. ALAMEDA SUR CRDA 12",
+        "phone": "945857062",
+        "email": "WILBER@GMAIL.COM",
+        "codeClient": "45896524",
+        
+        "typeClient": {
+            "id": 1,
+            "description": "PERSONAL"
+        }
+
+    }
+
+
+    {
+        "firstName": "CESAR EDUARDO",
+        "lastName": "OCAMPO DIAZ",
+        "direction": "AV. ALAMEDA SUR S/N NUMERO",
+        "phone": "944857062",
+        "email": "CESAR.OCAMPO@GMAIL.COM",
+        "codeClient": "43462534",
+        "corporation": null,
+        "typeClient": {
+            "id": 1,
+            "description": "PERSONAL"
+        }
+    }
+
+
+    {
+        "firstName": "GISSELA",
+        "lastName": "DIAZ VERA",
+        "direction": null,
+        "phone": "958456588",
+        "email": "GHISELA@GMAIL.COM",
+        "codeClient": "27081147",
+        "corporation": null,
+        "typeClient": {
+            "id": 1,
+            "description": "PERSONAL"
+        }
+    }

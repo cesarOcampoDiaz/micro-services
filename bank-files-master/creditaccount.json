@@ -1,0 +1,49 @@
+//SE CARGA UNO POR UNO POST http://localhost:8084/creditaccount
+    
+    {
+        "accountNumber": "123-1645655674-03",
+        "codeClient": "43462534",
+        "typeAccount": {
+            "id": 6,
+            "description": "TARJETA DE CREDITO"
+        },
+        "currency": {
+            "id": 1,
+            "description": "SOL"
+        },
+        "membershipDate": "2022-04-19T23:01:36.312+00:00",
+        "balance": 0.0,
+        "creditLimit": 3000.0,
+        "card": {
+            "cardNumber": "12121239283938293",
+            "expiryDate": "05/11/2028",
+            "typeCard": {
+                "id": 4,
+                "description": "VISA CREDITO CLASICA"
+            }
+        }
+    }
+
+    {
+        "accountNumber": "123-1645655675-03",
+        "codeClient": "1798285937001",
+        "typeAccount": {
+            "id": 6,
+            "description": "TARJETA DE CREDITO"
+        },
+        "currency": {
+            "id": 2,
+            "description": "USD"
+        },
+        "membershipDate": "2022-04-19T23:01:36.312+00:00",
+        "balance": 0.0,
+        "creditLimit": 50000.0,
+        "card": {
+            "cardNumber": "12121239283938293",
+            "expiryDate": "05/11/2028",
+            "typeCard": {
+                "id": 6,
+                "description": "VISA CREDITO LATAM"
+            }
+        }
+    }

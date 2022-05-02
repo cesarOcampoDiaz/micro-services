@@ -1,0 +1,52 @@
+//SE CARGA UNO POR UNO POST http://localhost:8083/api/bankcredit/
+{
+    "id": "01",
+    "codeClient": "1798285937001",
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    },
+    "typeCredit": {
+        "id": 5,
+        "description": "EMPRESA"
+    },
+    "requestDate": "2022-04-19T22:25:18.824+00:00",
+    "startDate": "20/04/2022",
+    "amount": 40000.0,
+    "fee": 14
+}
+
+
+{
+    "id": "02",
+    "codeClient": "43462534",
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    },
+    "typeCredit": {
+        "id": 1,
+        "description": "PERSONAL"
+    },
+    "requestDate": "2022-04-19T22:25:18.824+00:00",
+    "startDate": "20/04/2022",
+    "amount": 10000.0,
+    "fee": 5
+}
+
+{
+    "id": "03",
+    "codeClient": "43462534",
+    "currency": {
+        "id": 2,
+        "description": "USD"
+    },
+    "typeCredit": {
+        "id": 4,
+        "description": "HIPOTECARIO"
+    },
+    "requestDate": "2022-04-19T22:25:18.824+00:00",
+    "startDate": "20/04/2022",
+    "amount": 75000.0,
+    "fee": 60
+}

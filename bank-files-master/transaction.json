@@ -1,0 +1,67 @@
+//SE CARGA UNO POR UNO POST  http://localhost:8085/transaction
+
+{
+
+    "idTypeAccount": 1,
+    "numberCard": "1282112128282920",
+    "typeCard": 1,
+    "codeClient": "43462534",
+    "numberAccount": "197-2658546-04",
+    "typeOperation": {
+        "id": 1,
+        "description": "INGRESOS"
+    },
+    "originAccount": {
+        "numberAccount": "125-2646-5565",
+        "name": "JAVIER COCAMPO MORI"
+    },
+    "amount": 200.0,
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    }
+}
+
+{
+
+    "idTypeAccount": 1,
+    "numberCard": "1282112128282920",
+    "typeCard": 1,
+    "codeClient": "43462534",
+    "numberAccount": "197-2658546-04",
+    "typeOperation": {
+        "id": 2,
+        "description": "GASTOS"
+    },
+    "destinationAccount": {
+        "numberAccount": "125-2665-5565",
+        "name": "POLLERIA PARDOS"
+    },
+    "amount": 45.0,
+    "currency": {
+        "id": 1,
+        "description": "SOL"
+    }
+}
+
+
+{
+    "idTypeAccount": 9,
+    "numberCard": "12121239283938293",
+    "typeCard": 1,
+    "codeClient": "1798285937001",
+    "numberAccount": "123-1645655675-03",
+    "typeOperation": {
+        "id": 2,
+        "description": "GASTOS"
+    },
+    "destinationAccount": {
+        "numberAccount": "125-2665-5575",
+        "name": "COMPRAS REPLEY"
+    },
+    "amount": 500.0,
+    "currency": {
+        "id": 2,
+        "description": "USD"
+    }
+}
