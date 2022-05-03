@@ -10,5 +10,6 @@ import reactor.core.publisher.Flux;
 public interface ITransactionDao extends  ReactiveMongoRepository<Transaction,String> {
 
 	Flux<Transaction> findByCodeClientAndIdTypeAccount(String codeClient,Integer idTypeAccount);
+	Flux<Transaction> findByCodeClientAndIdTypeAccountAndNumberAccount(String codeClient,Integer idTypeAccount,String numberAccount);
 
 }

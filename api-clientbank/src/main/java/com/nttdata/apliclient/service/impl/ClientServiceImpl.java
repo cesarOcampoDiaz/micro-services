@@ -17,6 +17,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -106,5 +107,94 @@ public class ClientServiceImpl implements IClientService {
         // TODO Auto-generated method stub
         return clientDao.findByHoldersDniAndHoldersPhone(dni, phone);
     }
+
+
+    /**
+     * Generar un reporte completo y general por producto del banco en intervalo de tiempo especificado por el usuario
+     * @param codeClient
+     * @param typeAccount
+     * @return
+     */
+    public Mono<ClientReports> findByReportGeneralClient(String codeClient,Integer typeAccount){
+
+        return WebClient.create(Constants.PATH_SERVICE_CLIENT)
+                .get().uri(Constants.PATH_SERVICE_ClIENT_URI.concat("/code/").concat(codeClient))
+                .retrieve().bodyToMono(Client.class)
+                .flatMap(client -> {
+                    return WebClient.create(Constants.PATH_SERVICE_BANKACCOUNT)
+                            .get().uri(Constants.PATH_SERVICE_BANKACCOUNT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                            .retrieve().bodyToFlux(BankAccount.class)
+                            .collectList()
+                            .flatMap(bankAccount -> {
+                                        return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
+                                                .get().uri(Constants.PATH_SERVICE_TRANSACTION_URI.concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                                                .retrieve().bodyToFlux(Transaction.class)
+                                                .collectList()
+                                                .flatMap(transactionAccount -> {
+                                                    bankAccount
+                                                            .stream()
+                                                            .forEach(p-> p.setListTransaction(transactionAccount
+                                                                    .stream()
+                                                                   // .filter(p.getMembershipDate(). )
+                                                                    .filter(t->p.getAccountNumber().equals(t.getNumberAccount()))
+                                                                    .collect(Collectors.toList())));
+
+
+                                                    return WebClient.create(Constants.PATH_SERVICE_BANKCREDIT)
+                                                            .get().uri(Constants.PATH_SERVICE_BANKCREDIT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                                                            .retrieve().bodyToFlux(BankCredit.class)
+                                                            .collectList()
+                                                            .flatMap(bankCredit -> {
+                                                                        return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
+                                                                                .get().uri(Constants.PATH_SERVICE_TRANSACTION_URI.concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                                                                                .retrieve().bodyToFlux(Transaction.class)
+                                                                                .collectList()
+                                                                                .flatMap(transactionBankCredit -> {
+                                                                                    bankCredit
+                                                                                            .stream()
+                                                                                            .forEach(p-> p.setListTransaction(transactionBankCredit
+                                                                                                    .stream()
+                                                                                                    .filter(t->p.getTypeAccount().getId()==t.getIdTypeAccount())
+                                                                                                    .collect(Collectors.toList())));
+
+
+                                                                                    return WebClient.create(Constants.PATH_SERVICE_CREDIACCOUNT)
+                                                                                            .get().uri(Constants.PATH_SERVICE_CREDIACCOUNT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                                                                                            .retrieve().bodyToFlux(CreditAccount.class)
+                                                                                            .collectList()
+                                                                                            .flatMap(creditAccount -> {
+                                                                                                        return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
+                                                                                                                .get().uri(Constants.PATH_SERVICE_TRANSACTION_URI.concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
+                                                                                                                .retrieve().bodyToFlux(Transaction.class)
+                                                                                                                .collectList()
+                                                                                                                .flatMap(transactionCreditAccount -> {
+                                                                                                                    creditAccount
+                                                                                                                            .stream()
+                                                                                                                            .forEach(p-> p.setListTransaction(transactionCreditAccount
+                                                                                                                                    .stream()
+                                                                                                                                    .filter(t->p.getAccountNumber().equals(t.getNumberAccount()))
+                                                                                                                                    .collect(Collectors.toList())));
+
+
+                                                                                                                    return  Mono.just(new ClientReports(client,new ClientProducts(bankAccount,bankCredit,creditAccount))) ;
+                                                                                                                });
+                                                                                                    }
+                                                                                            );
+
+                                                                                });
+                                                                    }
+                                                            );
+
+
+
+
+                                                });
+                                    }
+                            );
+
+
+                });
+    }
+
 
 }

@@ -1,19 +1,25 @@
 package com.nttdata.apliclient.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
+
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class BankCredit {
-	
-	@Id
+
 	private String id;
 	private String codeClient;
 	private Currency currency;
@@ -26,4 +32,6 @@ public class BankCredit {
 	private Integer feeDue;
 	private double amount;
 	private Integer fee;
+
+	private List<Transaction> listTransaction;
 }

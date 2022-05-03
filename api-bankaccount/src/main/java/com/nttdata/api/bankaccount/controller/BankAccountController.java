@@ -192,4 +192,12 @@ public class BankAccountController {
         }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
     }
 
+
+    @GetMapping("/client/{codeClient}/{typeAccount}")
+    public Mono<ResponseEntity<Flux<BankAccount>>> findByCodeClientAndTypeAccount(
+            @PathVariable String codeClient,  @PathVariable Integer typeAccount ) {
+        return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(bankAccountService.findByCodeClientAndTypeAccountId(codeClient,typeAccount)));
+    }
+
 }

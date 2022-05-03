@@ -73,7 +73,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
 	}
 
 	@Override
-	public Mono<BankAccount> findByClientAndTypeAccount(String codeClient, Integer typeAccountId) {
+	public Flux<BankAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId) {
 
 		return bankAccountDAO.findByCodeClientAndTypeAccountId(codeClient, typeAccountId);
 	}

@@ -102,4 +102,10 @@ public class BankCreditController {
 		}).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/client/{codeClient}/{typeAccount}")
+	public Mono<ResponseEntity<Flux<BankCredit>>> findByCodeClientAndTypeAccount(
+			@PathVariable String codeClient,  @PathVariable Integer typeAccount ) {
+		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
+				.body(bankCreditService.findByCodeClientAndTypeAccountId(codeClient,typeAccount)));
+	}
 }

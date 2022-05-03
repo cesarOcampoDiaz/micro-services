@@ -20,6 +20,7 @@ import reactor.core.publisher.Mono;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "clients")
 public class Client extends Person {
 

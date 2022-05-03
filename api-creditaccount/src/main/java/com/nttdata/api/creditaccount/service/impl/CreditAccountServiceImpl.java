@@ -60,10 +60,14 @@ public class CreditAccountServiceImpl implements ICreditAccountService {
 
 	@Override
 	public Flux<CreditAccount> findByCodeClient(String codeClient) {
-		// TODO Auto-generated method stub
+
 		return creditAccountDAO.findByCodeClient(codeClient);
 	}
 
+	@Override
+	public Flux<CreditAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId) {
+		return creditAccountDAO.findByCodeClientAndTypeAccountId(codeClient,typeAccountId);
+	}
 
-	
+
 }

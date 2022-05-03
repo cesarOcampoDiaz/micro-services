@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import com.nttdata.apliclient.models.ClientProducts;
+import com.nttdata.apliclient.models.ClientReports;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -186,6 +187,16 @@ public class ClientController {
 
         return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
                 service.findByCodeClientProducts(codeClient))).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+//String codeClient,Integer typeAccount,String numberAccount
+    @GetMapping("/report/{codeClient}/{typeAccount}")
+    public Mono<ResponseEntity<Mono<ClientReports>>>  findByReportGeneralClient(@PathVariable("codeClient") String codeClient,
+                                                                                @PathVariable("typeAccount") Integer typeAccount){
+        LOGGER.info("metodo listTransactionClient: metodo de comunicacion al servicio name api-transaction");
+
+        return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
+                service.findByReportGeneralClient(codeClient,typeAccount))).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 

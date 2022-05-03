@@ -19,5 +19,7 @@ public interface IBankCreditService {
 	
 	public Flux<BankCredit> findByCodeClient(String codeClient);
 
+	public Flux<BankCredit> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId);
+
 
 }

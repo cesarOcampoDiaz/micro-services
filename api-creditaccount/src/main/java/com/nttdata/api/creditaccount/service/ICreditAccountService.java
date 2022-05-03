@@ -18,4 +18,6 @@ public interface ICreditAccountService {
 	
 	public Flux<CreditAccount> findByCodeClient(String codeClient);
 
+	public Flux<CreditAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId);
+
 }

@@ -11,5 +11,6 @@ import reactor.core.publisher.Flux;
 public interface ICreditAccountDAO extends ReactiveMongoRepository<CreditAccount, String> {
 	
 	public Flux<CreditAccount> findByCodeClient(String codeClient);
+	public Flux<CreditAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId);
 
 }

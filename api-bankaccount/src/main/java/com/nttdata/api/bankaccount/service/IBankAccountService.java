@@ -18,7 +18,7 @@ public interface IBankAccountService {
 	
 	public Flux<BankAccount> findByCodeClientAndTypeClient(String codeClient, Integer typeClient);
 
-	public Mono<BankAccount> findByClientAndTypeAccount(String codeClient, Integer typeAccountId);
+	public Flux<BankAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId);
 	
 	public Mono<BankAccount> findByCodeClientAndTypeClientAndTypeAccountId(String codeClient, Integer typeClient,Integer typeAccountId);
 

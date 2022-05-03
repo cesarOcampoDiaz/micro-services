@@ -49,5 +49,10 @@ public class TransactionServiceImpl implements ITransactionService {
 
 				
 	}
-	
+
+	@Override
+	public Flux<Transaction> findByCodeClientAndIdTypeAccountAndNumberAccount(String codeClient, Integer idTypeAccount, String numberAccount) {
+		return transactionDao.findByCodeClientAndIdTypeAccountAndNumberAccount(codeClient,idTypeAccount,numberAccount);
+	}
+
 }

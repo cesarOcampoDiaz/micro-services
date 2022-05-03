@@ -1,7 +1,7 @@
 package com.nttdata.apliclient.util;
 
 public interface Constants {
-	
+
 	public static final String PATH_SERVICE_TRANSACTION = "http://localhost:8085";
 	public static final String PATH_SERVICE_TRANSACTION_URI = "/transaction/client";
 
@@ -18,10 +18,8 @@ public interface Constants {
 	public static final Integer TIPO_CLIENT_NATURAL =1;
 	public static final String PATH_SERVICE_GATEWAY = "http://localhost:8080";
 
-/*
-	http://localhost:8084/creditaccount/client/43462534
-
-	http://localhost:8083/bankcredit/client/43462534*/
+	public static final String PATH_SERVICE_CLIENT = "http://localhost:8081";
+	public static final String PATH_SERVICE_ClIENT_URI = "/client";
 
 
 }

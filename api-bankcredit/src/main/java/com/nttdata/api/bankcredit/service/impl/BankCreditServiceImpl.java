@@ -63,4 +63,11 @@ public class BankCreditServiceImpl implements IBankCreditService {
 		return bankCreditDAO.findByCodeClient(codeClient);
 	}
 
+
+	@Override
+	public Flux<BankCredit> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId) {
+		return bankCreditDAO.findByCodeClientAndTypeAccountId(codeClient,typeAccountId);
+	}
+
+
 }
