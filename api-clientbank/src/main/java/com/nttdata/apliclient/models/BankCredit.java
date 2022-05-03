@@ -11,18 +11,19 @@ import java.util.Date;
 
 @Getter
 @Setter
-
 public class BankCredit {
 	
 	@Id
 	private String id;
 	private String codeClient;
 	private Currency currency;
-	private TypeCredit typeCredit;
+	private TypeAccount typeAccount;
 	@Nullable
 	private Date requestDate;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date startDate;
+	private Integer payDays;
+	private Integer feeDue;
 	private double amount;
 	private Integer fee;
 }

@@ -115,39 +115,36 @@ public class BankAccountController {
                     response.put("message", "El cliente ya tiene una cuenta de este tipo.");
                     response.put("timestamp", new Date());
 
-                    return ResponseEntity.created(URI.create("/api/bankaccount/".concat(ba.getAccountNumber())))
-                            .contentType(MediaType.APPLICATION_JSON).body(response);
                 } else {
                     // Un cliente empresarial no puede tener una cuenta de ahorro o de plazo fijo
                     // pero sí múltiples cuentas corrientes.
                     if (ba.getTypeAccount().getId() != Constants.TYPE_ACCOUNT_CORRIENTE) {
                         response.put("message", "El cliente solo puede tener multiples cuentas CORRIENTES.");
                         response.put("timestamp", new Date());
-                        return ResponseEntity
-                                .created(URI.create("/api/bankaccount/".concat(bankAccount.getAccountNumber())))
-                                .contentType(MediaType.APPLICATION_JSON).body(response);
+
                     } else {
+                        bankAccountService.save(bankAccount).map(x -> {
+                            response.put("obj", x.getObj());
+                            response.put("message", x.getMessage());
+                            response.put("timestamp", new Date());
 
-                        bankAccountService.save(bankAccount);
-                        response.put("obj", ba);
-                        response.put("message", "Successfully saved.");
-                        response.put("timestamp", new Date());
-
-                        LOGGER.info("metodo addBankAccount: Agrega una cuenta bancaria");
-                        return ResponseEntity
-                                .created(URI.create("/api/bankaccount/".concat(ba.getAccountNumber())))
-                                .contentType(MediaType.APPLICATION_JSON).body(response);
+                            LOGGER.info("metodo addBankAccount: Agrega una cuenta bancaria");
+                            return ResponseEntity.created(URI.create("/bankaccount/".concat(ba.getAccountNumber())))
+                                    .contentType(MediaType.APPLICATION_JSON).body(response);
+                        });
                     }
                 }
+                return ResponseEntity.created(URI.create("/bankaccount/".concat(ba.getAccountNumber())))
+                        .contentType(MediaType.APPLICATION_JSON).body(response);
 
             }).switchIfEmpty(bankAccountService.save(bankAccount).map(ba -> {
-                response.put("obj", ba);
-                response.put("message", "Successfully saved.");
+                response.put("obj", ba.getObj());
+                response.put("message", ba.getMessage());
                 response.put("timestamp", new Date());
 
                 LOGGER.info("metodo addBankAccount: Agrega una cuenta bancaria");
 
-                return ResponseEntity.created(URI.create("/api/bankaccount/".concat(ba.getAccountNumber())))
+                return ResponseEntity.created(URI.create("/bankaccount/".concat(bankAccount.getAccountNumber())))
 
                         .contentType(MediaType.APPLICATION_JSON).body(response);
 
@@ -174,13 +171,13 @@ public class BankAccountController {
 	 * @return
 	 */
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<BankAccount>> editBankAccount(@RequestBody BankAccount bankAccount,
+    public Mono<ResponseEntity<Object>> editBankAccount(@RequestBody BankAccount bankAccount,
                                                              @PathVariable String id) {
         return bankAccountService.findById(id).flatMap(ba -> {
             ba.setBalance(bankAccount.getBalance());
             return bankAccountService.save(ba);
-        }).map(ba -> ResponseEntity.created(URI.create("/api/bankaccount/".concat(ba.getAccountNumber())))
-                .contentType(MediaType.APPLICATION_JSON).body(ba)).defaultIfEmpty(ResponseEntity.notFound().build());
+        }).map(ba -> ResponseEntity.created(URI.create("/bankaccount/".concat(bankAccount.getAccountNumber())))
+                .contentType(MediaType.APPLICATION_JSON).body(ba.getObj())).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 	/**

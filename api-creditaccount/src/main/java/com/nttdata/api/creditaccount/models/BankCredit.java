@@ -1,19 +1,18 @@
-package com.nttdata.api.bankcredit.document;
+package com.nttdata.api.creditaccount.models;
 
-import java.util.Date;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.nttdata.api.creditaccount.document.Currency;
+import com.nttdata.api.creditaccount.document.TypeAccount;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
 @Getter
 @Setter
-@Document(collection = "bankcredit")
 public class BankCredit {
 	
 	@Id

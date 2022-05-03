@@ -2,6 +2,7 @@ package com.nttdata.api.bankaccount.service;
 
 import com.nttdata.api.bankaccount.document.BankAccount;
 
+import com.nttdata.api.bankaccount.models.Response;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -11,7 +12,7 @@ public interface IBankAccountService {
 	
 	public Mono<BankAccount> findById(String id);
 	
-	public Mono<BankAccount> save(BankAccount bankAccount);
+	public Mono<Response> save(BankAccount bankAccount);
 	
 	public Mono<Void> delete(BankAccount bankAccount);
 	

@@ -107,5 +107,4 @@ public class ClientServiceImpl implements IClientService {
         return clientDao.findByHoldersDniAndHoldersPhone(dni, phone);
     }
 
-
 }

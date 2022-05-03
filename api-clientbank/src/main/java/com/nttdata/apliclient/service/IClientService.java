@@ -29,6 +29,5 @@ public interface IClientService {
 	public Mono<Void> delete(Client client);
 
 	public Mono<ClientProducts> findByCodeClientProducts(String codeClient);
-	
 
 }

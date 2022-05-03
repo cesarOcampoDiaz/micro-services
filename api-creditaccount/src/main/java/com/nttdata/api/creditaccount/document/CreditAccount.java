@@ -21,6 +21,8 @@ public class CreditAccount {
 	private Currency currency;
 	@Nullable
 	private Date membershipDate;
+	private Integer payDays;
+	private Integer feeDue;
 	private double balance;
 	private double creditLimit;
 	private Card card;

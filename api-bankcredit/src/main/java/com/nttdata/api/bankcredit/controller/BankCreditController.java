@@ -63,11 +63,11 @@ public class BankCreditController {
 		return monoBankCredit.flatMap(bankCredit -> {
 			bankCredit.setRequestDate(new Date());
 			return bankCreditService.save(bankCredit).map(bc -> {
-				response.put("BankCredit", bc);
-				response.put("message", "Successfully saved.");
+				response.put("BankCredit", bc.getObj());
+				response.put("message", bc.getMessage());
 				response.put("timestamp", new Date());
 
-				return ResponseEntity.created(URI.create("/api/bankcredit/".concat(bc.getId())))
+				return ResponseEntity.created(URI.create("/bankcredit/".concat(bankCredit.getId())))
 						.contentType(MediaType.APPLICATION_JSON).body(response);
 			});
 		}).onErrorResume(t -> {
@@ -85,13 +85,13 @@ public class BankCreditController {
 	}
 
 	@PutMapping("/{id}")
-	public Mono<ResponseEntity<BankCredit>> editBankCredit(@RequestBody BankCredit bankCredit, @PathVariable String id) {
+	public Mono<ResponseEntity<Object>> editBankCredit(@RequestBody BankCredit bankCredit, @PathVariable String id) {
 		return bankCreditService.findById(id).flatMap(bc -> {
 			bc.setAmount(bankCredit.getAmount());
 			bc.setFee(bankCredit.getFee());
 			return bankCreditService.save(bc);
-		}).map(bc -> ResponseEntity.created(URI.create("/api/bankcredit/".concat(bc.getId())))
-				.contentType(MediaType.APPLICATION_JSON).body(bc)).defaultIfEmpty(ResponseEntity.notFound().build());
+		}).map(bc -> ResponseEntity.created(URI.create("/bankcredit/".concat(bankCredit.getId())))
+				.contentType(MediaType.APPLICATION_JSON).body(bc.getObj())).defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping("/{id}")

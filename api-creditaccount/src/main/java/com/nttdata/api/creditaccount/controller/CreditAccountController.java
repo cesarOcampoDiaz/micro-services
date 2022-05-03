@@ -62,11 +62,11 @@ public class CreditAccountController {
 		return monoCreditAccount.flatMap(creditAccount -> {
 			creditAccount.setMembershipDate(new Date());
 			return creditAccountService.save(creditAccount).map(ca -> {
-				response.put("CreditAccount", ca);
-				response.put("message", "Successfully saved.");
+				response.put("CreditAccount", ca.getObj());
+				response.put("message", ca.getMessage());
 				response.put("timestamp", new Date());
 
-				return ResponseEntity.created(URI.create("/api/creditaccount/".concat(ca.getAccountNumber())))
+				return ResponseEntity.created(URI.create("/creditaccount/".concat(creditAccount.getAccountNumber())))
 						.contentType(MediaType.APPLICATION_JSON).body(response);
 			});
 		}).onErrorResume(t -> {
@@ -84,12 +84,12 @@ public class CreditAccountController {
 	}
 
 	@PutMapping("/{id}")
-	public Mono<ResponseEntity<CreditAccount>> editCreditCard(@RequestBody CreditAccount creditAccount, @PathVariable String id) {
+	public Mono<ResponseEntity<Object>> editCreditCard(@RequestBody CreditAccount creditAccount, @PathVariable String id) {
 		return creditAccountService.findById(id).flatMap(ca -> {
 			ca.setBalance(creditAccount.getBalance());
 			return creditAccountService.save(ca);
-		}).map(ca -> ResponseEntity.created(URI.create("/api/creditaccount/".concat(ca.getAccountNumber())))
-				.contentType(MediaType.APPLICATION_JSON).body(ca)).defaultIfEmpty(ResponseEntity.notFound().build());
+		}).map(ca -> ResponseEntity.created(URI.create("/creditaccount/".concat(creditAccount.getAccountNumber())))
+				.contentType(MediaType.APPLICATION_JSON).body(ca.getObj())).defaultIfEmpty(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping("/{id}")

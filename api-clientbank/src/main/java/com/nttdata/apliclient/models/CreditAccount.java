@@ -10,16 +10,17 @@ import java.util.Date;
 
 @Getter
 @Setter
-
 public class CreditAccount {
 	
 	@Id
 	private String accountNumber;
 	private String codeClient;
-	private TypeCredit typeCredit;
+	private TypeAccount typeAccount;
 	private Currency currency;
 	@Nullable
 	private Date membershipDate;
+	private Integer payDays;
+	private Integer feeDue;
 	private double balance;
 	private double creditLimit;
 	private Card card;
