@@ -92,5 +92,18 @@ public class BankAccountServiceImpl implements IBankAccountService {
 		return bankAccountDAO.findByCodeClient(codeClient);
 	}
 
+	@Override
+	public Mono<BankAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber){
+
+	return bankAccountDAO.findByCodeClientAndAccountNumber(codeClient,accountNumber);
+	}
+
+	@Override
+	public Mono<BankAccount> saveCard(BankAccount bankAccount) {
+
+		return bankAccountDAO.save(bankAccount);
+
+
+	}
 
 }

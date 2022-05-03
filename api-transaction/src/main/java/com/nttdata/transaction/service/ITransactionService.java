@@ -17,6 +17,7 @@ public interface ITransactionService {
 	
 	public Flux<Transaction> findByCodeClientAndIdTypeAccount(String codeClient,Integer idTypeAccount);
 	public Flux<Transaction> findByCodeClientAndIdTypeAccountAndNumberAccount(String codeClient,Integer idTypeAccount,String numberAccount);
+	Flux<Transaction> findByCodeClientAndIdTypeAccountAndNumberCard(String codeClient,Integer idTypeAccount,String numberCard);
 	
 
 }

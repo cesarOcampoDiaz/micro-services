@@ -25,7 +25,7 @@ public class CreditAccount {
 	private String codeClient;
 	private TypeAccount typeAccount;
 	private Currency currency;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+
 	private Date membershipDate;
 	private Integer payDays;
 	private Integer feeDue;

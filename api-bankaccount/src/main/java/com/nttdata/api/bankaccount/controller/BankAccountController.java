@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.nttdata.api.bankaccount.document.Card;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -198,6 +199,28 @@ public class BankAccountController {
             @PathVariable String codeClient,  @PathVariable Integer typeAccount ) {
         return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(bankAccountService.findByCodeClientAndTypeAccountId(codeClient,typeAccount)));
+    }
+
+
+    /** Realiza la busquedad por cliente y numero de cuenta.
+     * @param codeClient
+     * @param accountNumber
+     * @return
+     */
+    @PutMapping("/client/{codeClient}/{accountNumber}")
+    public  Mono<ResponseEntity<BankAccount>> editCard(@RequestBody Card card, @PathVariable String codeClient, @PathVariable String accountNumber) {
+
+        //String codeClient, String accountNumber
+        return bankAccountService
+                .findByCodeClientAndAccountNumber(codeClient,accountNumber)
+                .flatMap(ca->{
+                      ca.setCard(card);
+                    return bankAccountService.saveCard(ca);
+                        }).map(ba -> ResponseEntity.created(URI.create("/bankaccount".concat("/client/").concat(codeClient).concat("/").concat(accountNumber)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(ba))
+                         .defaultIfEmpty(ResponseEntity.notFound().build());
+
     }
 
 }

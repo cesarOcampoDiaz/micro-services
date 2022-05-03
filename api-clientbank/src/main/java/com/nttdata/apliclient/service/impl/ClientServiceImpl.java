@@ -16,7 +16,6 @@ import com.nttdata.apliclient.service.IClientService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -115,7 +114,8 @@ public class ClientServiceImpl implements IClientService {
      * @param typeAccount
      * @return
      */
-    public Mono<ClientReports> findByReportGeneralClient(String codeClient,Integer typeAccount){
+    @Override
+    public Mono<ClientReports> findByReportGeneralClient(String codeClient,Integer typeAccount,String period){
 
         return WebClient.create(Constants.PATH_SERVICE_CLIENT)
                 .get().uri(Constants.PATH_SERVICE_ClIENT_URI.concat("/code/").concat(codeClient))
@@ -124,6 +124,7 @@ public class ClientServiceImpl implements IClientService {
                     return WebClient.create(Constants.PATH_SERVICE_BANKACCOUNT)
                             .get().uri(Constants.PATH_SERVICE_BANKACCOUNT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
                             .retrieve().bodyToFlux(BankAccount.class)
+                            .filter(f->((f.getMembershipDate().getYear()+1900)+String.format("%02d",(f.getMembershipDate().getMonth()+1))).equals(period))
                             .collectList()
                             .flatMap(bankAccount -> {
                                         return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
@@ -135,7 +136,6 @@ public class ClientServiceImpl implements IClientService {
                                                             .stream()
                                                             .forEach(p-> p.setListTransaction(transactionAccount
                                                                     .stream()
-                                                                   // .filter(p.getMembershipDate(). )
                                                                     .filter(t->p.getAccountNumber().equals(t.getNumberAccount()))
                                                                     .collect(Collectors.toList())));
 
@@ -143,6 +143,7 @@ public class ClientServiceImpl implements IClientService {
                                                     return WebClient.create(Constants.PATH_SERVICE_BANKCREDIT)
                                                             .get().uri(Constants.PATH_SERVICE_BANKCREDIT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
                                                             .retrieve().bodyToFlux(BankCredit.class)
+                                                            .filter(f->((f.getRequestDate().getYear()+1900)+String.format("%02d",(f.getRequestDate().getMonth()+1))).equals(period))
                                                             .collectList()
                                                             .flatMap(bankCredit -> {
                                                                         return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
@@ -161,6 +162,7 @@ public class ClientServiceImpl implements IClientService {
                                                                                     return WebClient.create(Constants.PATH_SERVICE_CREDIACCOUNT)
                                                                                             .get().uri(Constants.PATH_SERVICE_CREDIACCOUNT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(typeAccount.toString()))
                                                                                             .retrieve().bodyToFlux(CreditAccount.class)
+                                                                                            .filter(f->((f.getMembershipDate().getYear()+1900)+String.format("%02d",(f.getMembershipDate().getMonth()+1))).equals(period))
                                                                                             .collectList()
                                                                                             .flatMap(creditAccount -> {
                                                                                                         return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
@@ -195,6 +197,34 @@ public class ClientServiceImpl implements IClientService {
 
                 });
     }
+
+
+    /**
+     * Un cliente puede asociar la tarjeta de débito a todas las cuentas bancarias que posea.
+     * @param card
+     * @param codeClient
+     * @param accountNumber
+     * @return
+     */
+    @Override
+    public Mono<BankAccount> editCard(Card card, String codeClient, String accountNumber){
+
+
+        return WebClient.create(Constants.PATH_SERVICE_BANKACCOUNT)
+                .put().uri(Constants.PATH_SERVICE_BANKACCOUNT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(codeClient).concat("/").concat(accountNumber))
+                .body(Mono.just(card), Card.class)
+                .retrieve()
+                .bodyToMono(BankAccount.class);
+
+    }
+
+    @Override
+    public Flux<Transaction> reportTransactionLimit(String codeClient,Integer typeAccount,String numberCard){
+        return WebClient.create(Constants.PATH_SERVICE_TRANSACTION)
+                .get().uri(Constants.PATH_SERVICE_TRANSACTION_URI.concat("/report/").concat(codeClient).concat("/").concat(typeAccount.toString()).concat("/").concat(numberCard))
+                .retrieve().bodyToFlux(Transaction.class);
+    }
+
 
 
 }

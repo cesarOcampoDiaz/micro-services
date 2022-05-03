@@ -129,8 +129,25 @@ public class TransactionController {
 																				@PathVariable("typeAccount") Integer typeAccount,
 	                                                                            @PathVariable("numberAccount") String numberAccount
 	) {
-		LOGGER.info("metodo listarTransactionCliente cliente " + codeClient);
+		LOGGER.info("metodo listTransactionClientAccount  " + codeClient);
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
 				service.findByCodeClientAndIdTypeAccountAndNumberAccount(codeClient, typeAccount,numberAccount))).defaultIfEmpty(ResponseEntity.notFound().build());
 	}
+
+    /*
+        String codeClient,Integer idTypeAccount,String numberCard
+
+     */
+
+    @GetMapping("/client/report/{codeClient}/{typeAccount}/{numberCard}")
+    public Mono<ResponseEntity<Flux<Transaction>>> listTransactionClientReport(@PathVariable("codeClient") String codeClient,
+                                                                                @PathVariable("typeAccount") Integer typeAccount,
+                                                                                @PathVariable("numberCard") String numberCard
+    ) {
+        LOGGER.info("metodo listTransactionClientAccount  " + codeClient);
+        return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
+                service.findByCodeClientAndIdTypeAccountAndNumberCard(codeClient, typeAccount,numberCard))).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+
 }

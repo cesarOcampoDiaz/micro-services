@@ -18,4 +18,6 @@ public interface IBankAccountDAO extends ReactiveMongoRepository<BankAccount, St
 	public Mono<BankAccount> findByCodeClientAndTypeClientAndTypeAccountId(String codeClient, Integer typeClient,Integer typeAccountId);
 
 	public Flux<BankAccount> findByCodeClient(String codeClient);
+
+	public Mono<BankAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber);
 }

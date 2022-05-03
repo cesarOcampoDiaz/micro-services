@@ -24,5 +24,7 @@ public interface IBankAccountService {
 
 	public Flux<BankAccount> findByCodeClient(String codeClient);
 
+	public Mono<BankAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber);
 
+	public Mono<BankAccount> saveCard(BankAccount bankAccount);
 }

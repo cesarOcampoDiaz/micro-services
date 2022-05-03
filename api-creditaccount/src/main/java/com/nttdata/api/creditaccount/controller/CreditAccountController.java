@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.nttdata.api.creditaccount.document.Card;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,20 @@ public class CreditAccountController {
 			@PathVariable String codeClient,  @PathVariable Integer typeAccount ) {
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
 				.body(creditAccountService.findByCodeClientAndTypeAccountId(codeClient,typeAccount)));
+	}
+
+
+	@PutMapping("/client/{codeClient}/{accountNumber}")
+	public Mono<ResponseEntity<CreditAccount>> editCard(@RequestBody Card card, @PathVariable String codeClient, @PathVariable String accountNumber) {
+		return creditAccountService.findByCodeClientAndAccountNumber(codeClient,accountNumber)
+				.flatMap(ca->{
+							ca.setCard(card);
+							return creditAccountService.saveCard(ca);
+						}).map(ba -> ResponseEntity.created(URI.create("/creditaccount".concat("/client/").concat(codeClient).concat("/").concat(accountNumber)))
+						.contentType(MediaType.APPLICATION_JSON)
+						.body(ba))
+				.defaultIfEmpty(ResponseEntity.notFound().build());
+
 	}
 
 }

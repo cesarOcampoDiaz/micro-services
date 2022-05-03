@@ -23,7 +23,7 @@ public class BankAccount {
 	private String codeClient;
 	private TypeAccount typeAccount;
 	private Currency currency;
-	@JsonFormat(pattern = "dd/MM/yyyy")
+
 	private Date membershipDate;
 	private double balance;
 	private Card card;

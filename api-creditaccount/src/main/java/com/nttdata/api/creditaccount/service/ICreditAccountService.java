@@ -20,4 +20,8 @@ public interface ICreditAccountService {
 
 	public Flux<CreditAccount> findByCodeClientAndTypeAccountId(String codeClient, Integer typeAccountId);
 
+	public Mono<CreditAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber);
+
+	public Mono<CreditAccount> saveCard(CreditAccount creditAccount);
+
 }

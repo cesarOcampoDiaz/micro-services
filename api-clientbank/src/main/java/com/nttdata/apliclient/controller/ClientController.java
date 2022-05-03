@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.validation.Valid;
 
-import com.nttdata.apliclient.models.ClientProducts;
-import com.nttdata.apliclient.models.ClientReports;
+import com.nttdata.apliclient.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -25,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.WebExchangeBindException;
 
 import com.nttdata.apliclient.document.Client;
-import com.nttdata.apliclient.models.Response;
-import com.nttdata.apliclient.models.Transaction;
 import com.nttdata.apliclient.service.IClientService;
 import com.nttdata.apliclient.service.ITransactionService;
 import com.nttdata.apliclient.util.Constants;
@@ -189,16 +186,41 @@ public class ClientController {
                 service.findByCodeClientProducts(codeClient))).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-//String codeClient,Integer typeAccount,String numberAccount
-    @GetMapping("/report/{codeClient}/{typeAccount}")
+
+    @GetMapping("/report/{codeClient}/{typeAccount}/{period}")
     public Mono<ResponseEntity<Mono<ClientReports>>>  findByReportGeneralClient(@PathVariable("codeClient") String codeClient,
-                                                                                @PathVariable("typeAccount") Integer typeAccount){
+                                                                                @PathVariable("typeAccount") Integer typeAccount,
+                                                                                @PathVariable("period") String period
+    ){
         LOGGER.info("metodo listTransactionClient: metodo de comunicacion al servicio name api-transaction");
 
         return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
-                service.findByReportGeneralClient(codeClient,typeAccount))).defaultIfEmpty(ResponseEntity.notFound().build());
+                service.findByReportGeneralClient(codeClient,typeAccount,period))).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+
+    @PutMapping("/{codeClient}/{accountNumber}")
+    public  Mono<ResponseEntity<BankAccount>> editCard(@RequestBody Card card, @PathVariable String codeClient, @PathVariable String accountNumber) {
+
+        //String codeClient, String accountNumber
+        return service
+                .editCard(card,codeClient,accountNumber)
+                .map(ba -> ResponseEntity.created(URI.create("/client/".concat(codeClient).concat("/").concat(accountNumber)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(ba))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
+
+    }
+
+
+    @GetMapping("/transaction/report/{codeClient}/{typeAccount}/{numberCard}")
+    public Mono<ResponseEntity<Flux<Transaction>>> listTransactionClientReport(@PathVariable("codeClient") String codeClient,
+                                                                               @PathVariable("typeAccount") Integer typeAccount,
+                                                                               @PathVariable("numberCard") String numberCard
+    ) {
+        return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
+                service.reportTransactionLimit(codeClient, typeAccount,numberCard))).defaultIfEmpty(ResponseEntity.notFound().build());
+    }
 
 
 }

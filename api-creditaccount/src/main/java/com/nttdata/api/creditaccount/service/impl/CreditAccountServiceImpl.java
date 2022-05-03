@@ -1,5 +1,7 @@
 package com.nttdata.api.creditaccount.service.impl;
 
+import com.nttdata.api.creditaccount.document.Card;
+import com.nttdata.api.creditaccount.document.TypeCard;
 import com.nttdata.api.creditaccount.models.BankCredit;
 import com.nttdata.api.creditaccount.models.ClientCredits;
 import com.nttdata.api.creditaccount.models.Response;
@@ -69,5 +71,15 @@ public class CreditAccountServiceImpl implements ICreditAccountService {
 		return creditAccountDAO.findByCodeClientAndTypeAccountId(codeClient,typeAccountId);
 	}
 
+	@Override
+	public Mono<CreditAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber){
+
+      return creditAccountDAO.findByCodeClientAndAccountNumber(codeClient,accountNumber);
+	}
+	@Override
+	public Mono<CreditAccount> saveCard(CreditAccount creditAccount){
+
+		return creditAccountDAO.save(creditAccount);
+	}
 
 }
