@@ -1,17 +1,14 @@
 package com.nttdata.apliclient.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Transaction {
 	private String id;
     private Integer idTypeAccount;

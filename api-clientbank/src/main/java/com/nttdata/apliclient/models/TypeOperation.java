@@ -1,12 +1,10 @@
 package com.nttdata.apliclient.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class TypeOperation {
 	private Integer id;
 	private String description;

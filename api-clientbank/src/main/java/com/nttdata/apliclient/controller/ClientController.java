@@ -34,14 +34,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 @RestController
 @RequestMapping("/client")
-@Qualifier
 public class ClientController {
 	
 	@Autowired
 	private IClientService service;
-	
-	@Autowired
-	private ITransactionService serviceTransaction;
+
 	
 	
 	private static final Logger LOGGER = LogManager.getLogger(ClientController.class);
@@ -154,33 +151,33 @@ public class ClientController {
         }).defaultIfEmpty(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
     }
     
-	@GetMapping("/trasaction/{codeClient}/{codeTransaction}")
+	/*@GetMapping("/trasaction/{codeClient}/{codeTransaction}")
 	public Mono<ResponseEntity<Flux<Transaction>>>  listTransactionClient(@PathVariable("codeClient") String codeClient,@PathVariable("codeTransaction") String codeTransaction) {
 		LOGGER.info("metodo listTransactionClient: metodo de comunicacion al servicio name api-transaction");
 				
 		return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
 				serviceTransaction.listTransactionClient(codeClient,codeTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
-		     }
+		     }*/
 		
 	
-	@GetMapping("/trasaction/findAll")
+	/*@GetMapping("/trasaction/findAll")
 	public Mono<ResponseEntity<Mono<Transaction>>> findAllTransaction() {
 		LOGGER.info("metodo listarTransaction");
 		return Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(serviceTransaction.findAll()));
-	}
+	}*/
 	
-	@PostMapping("/trasaction")
+	/*@PostMapping("/trasaction")
 	public Mono<ResponseEntity<Mono<Response>>>  saveTransaction(@Valid @RequestBody Mono<Transaction> monoTransaction) {
 	
 		return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
 				serviceTransaction.save(monoTransaction))).defaultIfEmpty(ResponseEntity.notFound().build());
 
-	}
+	}*/
 
 
     @GetMapping("/report/{codeClient}")
     public Mono<ResponseEntity<Mono<ClientProducts>>>  listTransactionClient(@PathVariable("codeClient") String codeClient) {
-        LOGGER.info("metodo listTransactionClient: metodo de comunicacion al servicio name api-transaction");
+
 
         return  Mono.just(ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(
                 service.findByCodeClientProducts(codeClient))).defaultIfEmpty(ResponseEntity.notFound().build());

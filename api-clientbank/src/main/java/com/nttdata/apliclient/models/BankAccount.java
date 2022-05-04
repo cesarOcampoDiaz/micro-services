@@ -1,13 +1,13 @@
 package com.nttdata.apliclient.models;
 
-import java.time.LocalDateTime;
+
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
+
 
 import lombok.Getter;
 import lombok.Setter;
