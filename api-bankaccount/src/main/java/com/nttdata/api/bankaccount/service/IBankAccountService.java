@@ -26,5 +26,7 @@ public interface IBankAccountService {
 
 	public Mono<BankAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber);
 
+	public Mono<BankAccount> mainAccount(String codeClient, String cardNumber);
+
 	public Mono<BankAccount> saveCard(BankAccount bankAccount);
 }

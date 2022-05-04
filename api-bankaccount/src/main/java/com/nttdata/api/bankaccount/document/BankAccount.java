@@ -22,6 +22,8 @@ public class BankAccount {
 	private Currency currency;
 	@Nullable
 	private Date membershipDate;
+	@Nullable
+	private Boolean main;
 	private double balance;
 	private Card card;
 

@@ -19,6 +19,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class BankAccountServiceImpl implements IBankAccountService {
@@ -40,6 +41,11 @@ public class BankAccountServiceImpl implements IBankAccountService {
 
 	@Override
 	public Mono<Response> save(BankAccount bankAccount) {
+		bankAccountDAO.getByCodeClientAndCardCardNumberAndMain(bankAccount.getCodeClient(),bankAccount.getCard().getCardNumber(), true)
+				.map(x -> false)
+				.switchIfEmpty(Mono.just(true))
+				.subscribe(v -> bankAccount.setMain(v));
+
 		return WebClient.create(Constants.PATH_SERVICE_BANKCREDIT)
 				.get().uri(Constants.PATH_SERVICE_BANKCREDIT_URI.concat(Constants.PATH_CLIENT).concat("/").concat(bankAccount.getCodeClient()))
 				.retrieve().bodyToFlux(BankCredit.class)
@@ -81,8 +87,7 @@ public class BankAccountServiceImpl implements IBankAccountService {
 	@Override
 	public Mono<BankAccount> findByCodeClientAndTypeClientAndTypeAccountId(String codeClient, Integer typeClient,
 			Integer typeAccountId) {
-	
-		
+
 		// TODO Auto-generated method stub
 		return bankAccountDAO.findByCodeClientAndTypeClientAndTypeAccountId(codeClient, typeClient, typeAccountId);
 	}
@@ -95,15 +100,19 @@ public class BankAccountServiceImpl implements IBankAccountService {
 	@Override
 	public Mono<BankAccount> findByCodeClientAndAccountNumber(String codeClient, String accountNumber){
 
-	return bankAccountDAO.findByCodeClientAndAccountNumber(codeClient,accountNumber);
+		return bankAccountDAO.findByCodeClientAndAccountNumber(codeClient,accountNumber);
 	}
 
 	@Override
 	public Mono<BankAccount> saveCard(BankAccount bankAccount) {
 
 		return bankAccountDAO.save(bankAccount);
+	}
 
+	@Override
+	public Mono<BankAccount> mainAccount(String codeClient, String cardNumber) {
 
+		return bankAccountDAO.getByCodeClientAndCardCardNumberAndMain(codeClient,cardNumber, true);
 	}
 
 }

@@ -220,6 +220,15 @@ public class BankAccountController {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(ba))
                          .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+
+    @GetMapping("/main/{id}/{cardNumber}")
+    public Mono<ResponseEntity<BankAccount>> findMainAccount(@PathVariable String id, @PathVariable String cardNumber) {
+        return bankAccountService
+                .mainAccount(id,cardNumber)
+                .map(ba -> ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(ba))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
 
     }
 

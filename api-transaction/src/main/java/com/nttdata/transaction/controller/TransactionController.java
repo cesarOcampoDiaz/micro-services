@@ -82,7 +82,7 @@ public class TransactionController {
                 respuesta.put("message", "Transacion guardada con exito");
                 respuesta.put("timestamp", new Date());
 
-                return ResponseEntity.created(URI.create("/api/transaction".concat(t.getId())))
+                return ResponseEntity.created(URI.create("/transaction/".concat(t.getId())))
                         .contentType(MediaType.APPLICATION_JSON).body(respuesta);
             }).doOnSuccess(e -> LOGGER.info("OK"));
         }).onErrorResume(t -> {
@@ -105,7 +105,7 @@ public class TransactionController {
         return service.findById(id).flatMap(c -> {
             c.setAmount(transaction.getAmount());
             return service.save(c);
-        }).map(c -> ResponseEntity.created(URI.create("/api/transaction/".concat(c.getId())))
+        }).map(c -> ResponseEntity.created(URI.create("/transaction/".concat(c.getId())))
                 .contentType(MediaType.APPLICATION_JSON).body(c)).defaultIfEmpty(ResponseEntity.notFound().build());
     }
 

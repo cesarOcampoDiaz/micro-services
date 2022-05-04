@@ -21,11 +21,13 @@ public class Transaction {
     private String numberCard;
     private Integer typeCard;
     private String codeClient;
+    @Nullable
     private String numberAccount;
     private Currency currency;
     private TypeOperation typeOperation;
     @Nullable
     private Account originAccount;
+    @Nullable
     private Account destinationAccount;
     private Double amount;
     private LocalDateTime dateTransaction;
