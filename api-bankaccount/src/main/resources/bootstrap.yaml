@@ -1,33 +1,7 @@
-#spring:
-#  application:
-#    name: api-bankaccount
-#  cloud:
-#    config:
-#      enabled: true
-#      uri: http://localhost:8001
-server:
-  port: 8082
 spring:
-  data:
-    mongodb:
-      database: dbBankAccount
-      port: 27017
-      host: localhost
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-    shutdown:
-      enabled: 'true'
-info:
-  app:
-    name: Spring Boot Actuator Api Bank Credit
-    web: '*'
-  hello: Hi here!
-logging:
-  level:
-    root: info
+  application:
+    name: api-bankaccount
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8001
