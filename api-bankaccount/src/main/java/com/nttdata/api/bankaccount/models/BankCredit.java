@@ -3,15 +3,15 @@ package com.nttdata.api.bankaccount.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nttdata.api.bankaccount.document.Currency;
 import com.nttdata.api.bankaccount.document.TypeAccount;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BankCredit {
 	
 	@Id

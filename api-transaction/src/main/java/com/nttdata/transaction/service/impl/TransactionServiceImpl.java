@@ -9,6 +9,7 @@ import com.nttdata.transaction.dao.ITransactionDao;
 import com.nttdata.transaction.document.Transaction;
 import com.nttdata.transaction.service.ITransactionService;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -16,6 +17,7 @@ import reactor.core.publisher.Mono;
 import java.util.function.Supplier;
 
 @Service
+@Transactional
 public class TransactionServiceImpl implements ITransactionService {
 
 	@Autowired

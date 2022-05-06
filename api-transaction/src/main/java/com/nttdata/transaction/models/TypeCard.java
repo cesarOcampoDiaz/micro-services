@@ -1,10 +1,10 @@
 package com.nttdata.transaction.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TypeCard {
 	
 	private Integer id;

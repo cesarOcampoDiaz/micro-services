@@ -1,16 +1,13 @@
 package com.nttdata.transaction.document;
 import java.time.LocalDateTime;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "transacctions")
 public class Transaction {
@@ -30,6 +27,7 @@ public class Transaction {
     @Nullable
     private Account destinationAccount;
     private Double amount;
+    @Nullable
     private LocalDateTime dateTransaction;
 
     

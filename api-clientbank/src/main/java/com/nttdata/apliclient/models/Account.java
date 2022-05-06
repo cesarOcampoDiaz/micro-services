@@ -2,12 +2,10 @@ package com.nttdata.apliclient.models;
 
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Account {
 	 private String numberAccount;

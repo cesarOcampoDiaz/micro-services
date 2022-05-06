@@ -8,8 +8,8 @@ import lombok.*;
 
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Card {
 
 	private String cardNumber;

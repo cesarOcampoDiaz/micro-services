@@ -1,15 +1,13 @@
 package com.nttdata.api.bankaccount.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Response {
 
     @Nullable

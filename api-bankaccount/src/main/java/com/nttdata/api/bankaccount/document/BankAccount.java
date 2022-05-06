@@ -2,15 +2,14 @@ package com.nttdata.api.bankaccount.document;
 
 import java.util.Date;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Unwrapped.Nullable;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "bankaccount")
 public class BankAccount {
 	

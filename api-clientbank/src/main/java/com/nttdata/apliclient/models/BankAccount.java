@@ -5,17 +5,11 @@ import java.util.Date;
 import java.util.List;
 
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BankAccount {
 	
 	private String accountNumber;
