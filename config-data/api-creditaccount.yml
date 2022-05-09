@@ -34,3 +34,15 @@ eureka:
       default-zone: http://localhost:8761/eureka
     instance:
       instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+resilience4j.circuitbreaker:
+  instances:
+    services:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: TIME_BASED
+      minimumNumberOfCalls: 20
+      waitDurationInOpenState: 15s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
