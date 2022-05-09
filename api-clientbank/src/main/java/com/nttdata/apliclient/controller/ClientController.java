@@ -196,7 +196,7 @@ public class ClientController {
     }
 
 
-    @PutMapping("/{codeClient}/{accountNumber}")
+    @PutMapping("/edit/{codeClient}/{accountNumber}")
     public  Mono<ResponseEntity<BankAccount>> editCard(@RequestBody Card card, @PathVariable String codeClient, @PathVariable String accountNumber) {
 
         //String codeClient, String accountNumber
